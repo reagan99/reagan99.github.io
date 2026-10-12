@@ -1,306 +1,58 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ko">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="SSH Studio는 iPhone과 iPad에서 로컬 코드 편집, SSH 터미널, SFTP 파일 탐색을 하나의 작업공간으로 연결합니다.">
+  <meta name="theme-color" content="#0c121b">
+  <title>SSH Studio — iPhone과 iPad의 코드 작업공간</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-
-    <div ondblclick="showWindow()" oncontextmenu="showWindow()">
-        <img src="static/my_file.png">
-        <div class="file">
-            구래건
-        </div>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="SSH Studio 홈"><img src="assets/mark.svg" width="32" height="32" alt=""><span>SSH Studio</span></a>
+      <nav aria-label="주 메뉴"><a href="index.html" aria-current="page">소개</a><a href="support.html">지원</a><a href="privacy.html">개인정보</a></nav>
     </div>
-
-
-    <div ondblclick="window.location.href = 'https://github.com/reagan99'">
-        <img src="static/git_logo.png" style="margin-top: 100px; width: 75px; height: 75px; left: 29px;">
-        <div class="git">
-            github
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="small-dot" aria-hidden="true"></span> FOR iPHONE &amp; iPAD</p>
+          <h1>코드, 파일,<br>터미널.<br><span>한 작업공간에서.</span></h1>
+          <p class="hero-description">기기에 있는 프로젝트부터 SSH 서버까지.<br>화면을 오가는 대신, 작업의 흐름을 이어가세요.</p>
+          <div class="actions"><a class="button button-primary" href="#workspace">작업공간 살펴보기 <span aria-hidden="true">↘</span></a><a class="text-link" href="support.html">도움이 필요하신가요? <span aria-hidden="true">↗</span></a></div>
+          <p class="hero-platform">로컬 코드 편집 · SSH · SFTP · Open VSX</p>
         </div>
-    </div>
-
-    <div ondblclick="showFolder()">
-        <img src="static/my_file.png" style="margin-top: 228px;">
-        <div class="gicbak">
-            직박구리
-        </div>
-    </div>
-        
-    <div class="window" style="display:none">
-        <div class="title-bar" onmousedown="dragWindow(event)">
-            <div class="title-bar-text">Window</div>
-            <div class="title-bar-controls">
-                <button aria-label="Minimize" onclick="minimizeWindow(event)"></button>
-                <button aria-label="Maximize" onclick="maximizeWindow(event)"></button>
-                <button aria-label="Close" onclick="closeWindow(event)"></button>
+        <figure class="workspace-figure">
+          <div class="workspace-demo" role="img" aria-label="iPad 작업공간 구성 예시. 왼쪽에 파일 탐색기, 오른쪽에 코드 편집기, 아래에 SSH 터미널이 배치되어 있습니다.">
+            <div class="demo-top"><span class="demo-project"><span class="small-dot" aria-hidden="true"></span> Workspace</span><span class="demo-caption">화면 구성 예시</span></div>
+            <div class="demo-body">
+              <div class="demo-activity" aria-hidden="true"><span class="active">▱</span><span>⌕</span><span>{ }</span><span>⊞</span></div>
+              <div class="demo-explorer" aria-hidden="true"><div class="demo-label">EXPLORER</div><div class="demo-folder">⌄ project</div><div class="demo-file">⌄ src</div><div class="demo-file selected">&nbsp;&nbsp; main.py</div><div class="demo-file">&nbsp;&nbsp; config.json</div><div class="demo-file">&nbsp; README.md</div><div class="demo-folder-label">작업에 필요한 파일,<br>바로 곁에.</div></div>
+              <div class="demo-editor" aria-hidden="true"><div class="demo-tab"><span class="file-dot"></span> main.py <span>×</span></div><div class="demo-code"><div><i>1</i><span class="code-purple">from</span> pathlib <span class="code-purple">import</span> Path</div><div><i>2</i></div><div><i>3</i><span class="code-purple">def</span> <span class="code-cyan">hello</span>(name):</div><div><i>4</i>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-purple">return</span> <span class="code-green">f"Hello, {name}"</span></div><div><i>5</i></div><div><i>6</i><span class="code-cyan">print</span>(hello(<span class="code-green">"Studio"</span>))</div></div><div class="demo-terminal"><div class="demo-terminal-tabs"><span>터미널</span><span>ssh 1</span><span aria-hidden="true">＋</span></div><div class="demo-terminal-code"><span class="code-green">project</span> <span class="code-muted">❯</span> python src/main.py<br>Hello, Studio<br><span class="code-green">project</span> <span class="code-muted">❯</span> <span class="cursor-block"></span></div></div></div>
             </div>
-        </div>
-        <div class="window-body">
-            <h1>Who am I</h1>
-            <img src="static/my_file.png" alt="내 이미지">
-            <button class="tag" ondblclick="showMemo()">개인정보</button>
-            <button class="tag" onclick="openEditor()">Word</button>
-            <button class="tag">메모</button>
-            <button class="tag" onclick="showLinux()">리눅스</button>
-        </div>
-    </div>
-    <div class="editor" style="display:none">
-        <div class="editor-title-bar" onmousedown="dragEditor(event)">
-            
-            <div class="editor-title-bar-text">Word</div>
-            <div class="toolbar">
-                <button class="btn">저장</button>
-                <button class="btn">열기</button>
-                <button class="btn">잘라내기</button>
-                <button class="btn">복사</button>
-                <button class="btn">붙여넣기</button>
-            </div>
-            <div class="editor-title-bar-controls">
-                <button aria-label="Minimize" onclick="minimizeEditor(event)"></button>
-                <button aria-label="Maximize" onclick="maximizeEditor(event)"></button>
-                <button aria-label="Close" onclick="closeEditor(event)"></button>
-            </div>
-        </div>
-        <div class="editor-body">
-            <p> 누군가를 알고 싶다면<br>
-                그 사람의 컴퓨터를 보면 되지 않을까요?<br>
-               아님 말고...<br>
-                </p>
-        </div>
-    </div>
-    
-    <div class="memo" style="display:none">
-        <div class="memo-title-bar" onmousedown="dragMemo(event)">
-            <div class="memo-title-bar-text">Memo</div>
-            <div class="memo-title-bar-controls">
-                <button aria-label="Minimize" onclick="minimizeMemo(event)"></button>
-                <button aria-label="Maximize" onclick="maximizeMemo(event)"></button>
-                <button aria-label="Close" onclick="closeMemo(event)"></button>
-            </div>
-        </div>
-        <div class="memo-body">
-            <h1>Sticker Memo</h1>
-            <p>이름: 구래건<br>
-                생년월일 : 2003.09.14<br>
-                태어난 곳: 캐나다/밴쿠버<br>
-                </p>
-        </div>
-    </div>
-    <div class="folder" style="display:none">
-        <div class="folder-title-bar" >
-            <div class="folder-title-bar-text">Folder</div>
-            <div class="folder-title-bar-controls">
-                <button aria-label="Minimize" onclick="minimizeFolder(event)"></button>
-                <button aria-label="Maximize" onclick="maximizeFolder(event)"></button>
-                <button aria-label="Close" onclick="closeFolder(event)"></button>
-            </div>
-        </div>
-        <div class="folder-separator"></div>
-        <div class="content">
-            <div class="sidebar">
-                <ul>
-                    <li>Documents</li>
-                    <li>Downloads</li>
-                    <li>Pictures</li>
-                    <li>Videos</li>
-                </ul>
-            </div>
-            <div class="main">
-                <ul>
-                    <li>File 1</li>
-                    <li>File 2</li>
-                    <li>File 3</li>
-                    <li>File 4</li>
-                    <li>File 5</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="powerpoint"  style="display:none">
-        <div class="powerpoint-title-bar" onmousedown="dragPowerpoint(event)">
-            <div class="powerpoint-title-bar-text">PowerPoint</div>
-            <div class="powerpoint-title-bar-controls">
-                <button aria-label="Minimize" onclick="minimizePowerpoint(event)"></button>
-                <button aria-label="Maximize" onclick="maximizePowerpoint(event)"></button>
-                <button aria-label="Close" onclick="closePowerpoint(event)"></button>
-            </div>
-        </div>
-        <div class="powerpoint-body">
-            <div class="powerpoint-sidebar">
-                <ul>
-                    <li><a href="#">File</a></li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Insert</a></li>
-                    <li><a href="#">Design</a></li>
-                    <li><a href="#">Transitions</a></li>
-                    <li><a href="#">Animations</a></li>
-                    <li><a href="#">Slide Show</a></li>
-                    <li><a href="#">Review</a></li>
-                    <li><a href="#">View</a></li>
-                </ul>
-            </div>
-            <div class="powerpoint-main">
-                <div class="powerpoint-slide">
-                    <img src="static/linux/슬라이드1.PNG" alt="Slide 1">
-                    <img src="static/linux/슬라이드2.PNG" alt="Slide 2">
-                    <img src="static/linux/슬라이드3.PNG" alt="Slide 3">
-                    <img src="static/linux/슬라이드4.PNG" alt="Slide 4">
-                    <img src="static/linux/슬라이드5.PNG" alt="Slide 5">
-                    <img src="static/linux/슬라이드6.PNG" alt="Slide 6">
-                    <img src="static/linux/슬라이드7.PNG" alt="Slide 7">
-                    <img src="static/linux/슬라이드8.PNG" alt="Slide 8">
-                    <img src="static/linux/슬라이드9.PNG" alt="Slide 9">
-                    <img src="static/linux/슬라이드10.PNG" alt="Slide 10">
-                    <img src="static/linux/슬라이드11.PNG" alt="Slide 11">
-                    <img src="static/linux/슬라이드12.PNG" alt="Slide 12">
-                    <img src="static/linux/슬라이드13.PNG" alt="Slide 13">
-                    <img src="static/linux/슬라이드14.PNG" alt="Slide 14">
-                    <img src="static/linux/슬라이드15.PNG" alt="Slide 15">
-                    <img src="static/linux/슬라이드16.PNG" alt="Slide 16">
-                    <img src="static/linux/슬라이드17.PNG" alt="Slide 17">
-                    <img src="static/linux/슬라이드18.PNG" alt="Slide 18">
-                    <img src="static/linux/슬라이드19.PNG" alt="Slide 19">
-                    <img src="static/linux/슬라이드20.PNG" alt="Slide 20">
-                    <img src="static/linux/슬라이드21.PNG" alt="Slide 21">
-                    <img src="static/linux/슬라이드22.PNG" alt="Slide 22">
-                </div>
-            </div>
-    
-    <script>
-        const windowElement = document.querySelector('.window');
-        const memoElement = document.querySelector('.memo');
-        const folderElement = document.querySelector('.folder');
-        const editorElement = document.querySelector('.editor');
-        const powerpointElement = document.querySelector('.powerpoint');
-        let isDraggingWindow = false;
-        let isDraggingMemo = false;
-        let isDraggingEditor = false;
-        let windowOffsetX = 0;
-        let windowOffsetY = 0;
-        let memoOffsetX = 0;
-        let memoOffsetY = 0;
-        let editorOffsetX = 0;
-        let editorOffsetY = 0;
-
-        function showWindow() {
-            windowElement.style.display = 'block';
-        }
-
-        function minimizeWindow(event) {
-            event.stopPropagation();
-            windowElement.style.display = 'none';
-        }
-
-        function openEditor() {
-            windowElement.style.display = 'none';
-            editorElement.style.display = 'block';
-        }
-        function showLinux(){
-            powerpointElement.style.display = 'block';
-        }
-
-        function closeEditor(event) {
-            event.stopPropagation();
-            editorElement.style.display = 'none';
-            windowElement.style.display = 'block';
-        }
-
-        function dragEditor(event) {
-            isDraggingEditor = true;
-            editorOffsetX = event.clientX - editorElement.offsetLeft;
-            editorOffsetY = event.clientY - editorElement.offsetTop;
-        }
-
-        function dragWindow(event) {
-            isDraggingWindow = true;
-            windowOffsetX = event.clientX - windowElement.offsetLeft;
-            windowOffsetY = event.clientY - windowElement.offsetTop;
-        }
-
-        function minimizeEditor(event) {
-            event.stopPropagation();
-            editorElement.style.display = 'none';
-        }
-
-        function maximizeEditor(event) {
-            event.stopPropagation();
-            editorElement.style.width = '100%';
-            editorElement.style.height = '100%';
-            editorElement.style.top = '30';
-            editorElement.style.left = '30';
-        }
-
-        function closeWindow(event) {
-            event.stopPropagation();
-            windowElement.style.display = 'none';
-        }
-
-        function dragMemo(event) {
-            isDraggingMemo = true;
-            memoOffsetX = event.clientX - memoElement.offsetLeft;
-            memoOffsetY = event.clientY - memoElement.offsetTop;
-        }
-
-        function minimizeMemo(event) {
-            event.stopPropagation();
-            memoElement.style.display = 'none';
-        }
-
-        function maximizeMemo(event) {
-            event.stopPropagation();
-            memoElement.style.width = '100%';
-            memoElement.style.height = '100%';
-            memoElement.style.top = '30';
-            memoElement.style.left = '30';
-        }
-
-        function closeMemo(event) {
-            event.stopPropagation();
-            memoElement.style.display = 'none';
-        }
-
-        function showMemo() {
-            memoElement.style.display = 'block';
-        }
-
-        function showFolder() {
-            folderElement.style.display = 'block';
-        }
-
-        function minimizeFolder(event) {
-            event.stopPropagation();
-            folderElement.style.display = 'none';
-        }
-
-        function maximizeFolder(event) {
-            event.stopPropagation();
-            folderElement.style.width = '100%';
-            folderElement.style.height = '100%';
-            folderElement.style.top = '30';
-            folderElement.style.left = '30';
-        }
-
-        function closeFolder(event) {
-            event.stopPropagation();
-            folderElement.style.display = 'none';
-        }
-        function minimizePowerpoint(event) {
-            event.stopPropagation();
-            powerpointElement.style.display = 'none';
-        }
-        function maximizePowerpoint(event) {
-            event.stopPropagation();
-            powerpointElement.style.width = '100%';
-            powerpointElement.style.height = '100%';
-            powerpointElement.style.top = '30';
-            powerpointElement.style.left = '30';
-        }
-        function closePowerpoint(event) {
-            event.stopPropagation();
-            powerpointElement.style.display = 'none';
-        }
-    
-    </script>
+            <div class="demo-status"><span>SSH</span><span>Python &nbsp; UTF-8</span></div>
+          </div>
+          <figcaption>iPad에서는 함께 보고, iPhone에서는 필요한 화면에 집중하세요.</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="section workspace-section" id="workspace">
+      <div class="section-heading"><p class="eyebrow">ONE WORKSPACE</p><h2>작업 장소가 달라도,<br>익숙한 흐름 그대로.</h2><p>파일을 찾고, 코드를 고치고, 결과를 확인하는 도구를 가까이 모았습니다.</p></div>
+      <div class="workflow-list">
+        <article class="workflow-row"><span class="row-number">01</span><div><h3>서버에 연결해 작업하기</h3><p>SSH 터미널과 SFTP 탐색기를 함께 사용하세요. 여러 터미널을 열고, 파일을 편집·전송하고, 자주 쓰는 서버와 폴더를 즐겨찾기에 담을 수 있습니다.</p></div><div class="row-tags"><span>SSH 터미널</span><span>SFTP 탐색기</span><span>호스트 키 확인</span></div></article>
+        <article class="workflow-row"><span class="row-number">02</span><div><h3>기기의 프로젝트 편집하기</h3><p>새 로컬 프로젝트를 만들거나 Files의 폴더를 제자리에서 여세요. 여러 코드 탭, 구문 강조, 찾기·바꾸기, 빠른 열기와 명령 팔레트가 이어집니다.</p></div><div class="row-tags"><span>로컬 프로젝트</span><span>Files 폴더</span><span>다중 코드 탭</span></div></article>
+        <article class="workflow-row"><span class="row-number">03</span><div><h3>반복 입력과 화면 이동 줄이기</h3><p>Ctrl·Alt, 방향키, PgUp·PgDn과 기능키를 특수 키패드에서 사용하세요. 스니펫으로 반복 명령을 꺼내고, 이미지·영상·PDF는 편집기 영역의 탭에서 확인하세요.</p></div><div class="row-tags"><span>특수 키패드</span><span>스니펫</span><span>미디어 탭</span></div></article>
+      </div>
+    </section>
+    <section class="extension-section"><div class="section extension-inner"><div><p class="eyebrow">MAKE ROOM FOR YOUR TOOLS</p><h2>필요한 도구를,<br>확장으로 더하세요.</h2></div><div><p>Open VSX에서 확장을 찾아 설치하고, 작업공간에서 열 수 있습니다. SSH 작업공간에서는 선택한 서버의 실행 환경을, 로컬 작업공간에서는 기기의 지원 기능을 사용합니다.</p><p class="muted">사용 가능한 기능은 확장이 요구하는 API와 실행 환경에 따라 달라집니다. 확장을 활성화하기 전에 게시자와 접근 범위를 확인하세요.</p><a class="text-link" href="support.html#extensions">확장 사용 안내 <span aria-hidden="true">↗</span></a></div></div></section>
+    <section class="section closing-section"><div><p class="eyebrow">HERE TO HELP</p><h2>작업이 막혔나요?</h2><p>연결, 편집, 파일 미리보기와 확장 사용에 관한 안내를 확인하세요.</p></div><a class="button button-dark" href="support.html">지원 페이지 <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer class="site-footer"><div class="footer-inner"><a class="brand" href="index.html"><img src="assets/mark.svg" width="26" height="26" alt=""><span>SSH Studio</span></a><p>© 2026 구래건 / Reagan Koo</p><nav aria-label="푸터 메뉴"><a href="support.html">지원</a><a href="privacy.html">개인정보처리방침</a><a href="mailto:reagan9@naver.com">이메일</a></nav></div></footer>
+</body>
 </html>
-
